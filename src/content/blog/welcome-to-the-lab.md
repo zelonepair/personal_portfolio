@@ -1,24 +1,30 @@
 ---
-title: 'Welcome to the Lab'
-description: 'What I hope to publish here and how I plan to structure posts going forward.'
+title: 'Open Docket: Patent Intelligence Lab'
+description: 'Positioning my chemistry background for patent agent roles and outlining what I publish here.'
 pubDate: 'Feb 17 2025'
 heroImage: '../../assets/blog-placeholder-1.jpg'
 ---
 
-I have rebuilt this site at least five times. Previous versions leaned heavily on whatever framework I
-was learning that month. This iteration is intentionally calmer: plain Astro, a focus on writing, and
-just enough styling to make the reading experience pleasant.
+Hi, I'm Jen—a Chemistry PhD with two years of industry experience who is transitioning into full-time
+patent work. This site is the notebook I'm keeping public while I interview for patent agent roles.
 
-**What you can expect:**
+### Why this space exists
 
-- Weeknotes covering the experiments I run while learning new tools.
-- Tactical front-end write-ups, especially around accessibility and testing.
-- Occasional deep dives into the processes that make teams effective (planning, documentation,
-  deployments).
+- I needed a home to document the workflows I build for large-scale prior-art searches.
+- Recruiters kept asking how I use AI in practice, so I decided to show my experiments instead of just
+talking about them.
+- Writing helps me connect the lab intuition I honed during my doctorate with the legal rigor required
+for prosecution.
 
-After years of juggling markdown files, I finally wired the project for GitHub Pages. That means each
-push to `main` runs tests, builds the static site, and ships to production automatically. Future
-posts will break down how the workflow is assembled so you can copy it into your own projects.
+### What I'll publish
 
-Thanks for stopping by. If you'd like updates, add the RSS feed to your reader or just peek back
-whenever curiosity strikes.
+1. Patent landscape breakdowns for chemistry-heavy fields (catalysis, biomaterials, battery
+   chemistry).
+2. Python + LLM recipes for clustering claims, extracting competitive intelligence, and summarizing
+   voluminous file histories.
+3. Notes from the job search—what employers expect, how I prepare technical disclosures, and where AI
+   copilots genuinely save time.
+
+If you're building IP in a research-driven organization—or hiring a patent agent who can code—I'd love
+to hear from you. Email me at [jen@jendau.com](mailto:jen@jendau.com) or connect on
+[LinkedIn](https://www.linkedin.com/in/huong-dau/).

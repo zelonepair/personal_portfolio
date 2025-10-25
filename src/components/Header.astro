@@ -17,12 +17,12 @@ const socialLinks = [
 	},
 	{
 		label: 'LinkedIn',
-		href: 'https://www.linkedin.com/in/huongdau/',
+		href: 'https://www.linkedin.com/in/huong-dau/',
 		path: 'M3.16 6H.44v9.55h2.72zm.18-2.86A1.62 1.62 0 0 0 1.64 1.5 1.63 1.63 0 0 0 0 3.14a1.63 1.63 0 0 0 1.64 1.63h.02a1.63 1.63 0 0 0 1.68-1.64Zm4 2.86H4.64v9.55h2.67v-5.34c0-1.41.27-2.77 2.01-2.77 1.72 0 1.74 1.6 1.74 2.86v5.25h2.67V9.6c0-2.84-.6-5.63-3.95-5.63a3.46 3.46 0 0 0-3.14 1.73h-.04z',
 	},
 	{
 		label: 'Email',
-		href: 'mailto:hello@huongdau.dev',
+		href: 'mailto:jen@jendau.com',
 		path: 'M1.5 3A1.5 1.5 0 0 0 0 4.5v7A1.5 1.5 0 0 0 1.5 13h13a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 14.5 3zm0 1h13c.09 0 .18.02.26.05L8 8.38 1.24 4.05c.08-.03.17-.05.26-.05Zm-.5 1.3 4.97 3.12L1 10.83Zm6.53 3.74.47.3.47-.3L16 5.3V11.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5Z',
 	},
 ];
@@ -30,8 +30,8 @@ const socialLinks = [
 
 <header class="site-header">
 	<nav>
-		<a class="brand" href={homeHref}>
-			<span class="eyebrow">Writing & experiments</span>
+			<a class="brand" href={homeHref}>
+				<span class="eyebrow">Patent analytics + AI tooling</span>
 			<span class="title">{SITE_TITLE}</span>
 		</a>
 		<div class="internal-links">
@@ -39,6 +39,7 @@ const socialLinks = [
 				<HeaderLink href={link.href}>{link.label}</HeaderLink>
 			))}
 		</div>
+		<span class="availability">Open to patent agent roles</span>
 		<div class="social-links" role="list">
 			{socialLinks.map((link) => (
 				<a href={link.href} aria-label={link.label} target="_blank" rel="noreferrer">
@@ -92,12 +93,21 @@ const socialLinks = [
 		text-transform: uppercase;
 		letter-spacing: 0.05em;
 	}
-	.social-links {
-		display: flex;
-		gap: 0.25rem;
-	}
-	.social-links a {
-		color: rgb(var(--gray));
+		.social-links {
+			display: flex;
+			gap: 0.25rem;
+		}
+		.availability {
+			font-size: 0.85rem;
+			text-transform: uppercase;
+			letter-spacing: 0.08em;
+			color: rgb(var(--gray));
+			padding: 0.35rem 0.75rem;
+			border: 1px solid rgba(var(--gray-light), 0.8);
+			border-radius: 999px;
+		}
+		.social-links a {
+			color: rgb(var(--gray));
 		padding: 0.25rem;
 		border-radius: 100%;
 	}
@@ -106,14 +116,17 @@ const socialLinks = [
 		color: rgb(var(--black));
 		background: rgba(var(--gray-light), 0.5);
 	}
-	@media (max-width: 720px) {
-		nav {
-			flex-direction: column;
-			text-align: center;
+		@media (max-width: 720px) {
+			nav {
+				flex-direction: column;
+				text-align: center;
+			}
+			.internal-links {
+				flex-wrap: wrap;
+				justify-content: center;
+			}
+			.availability {
+				margin-top: 0.75rem;
+			}
 		}
-		.internal-links {
-			flex-wrap: wrap;
-			justify-content: center;
-		}
-	}
 </style>

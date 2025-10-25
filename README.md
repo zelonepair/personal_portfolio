@@ -1,7 +1,7 @@
-# Huong Dau - Personal Blog
+# Jen Dau - Patent Intelligence Notebook
 
-A minimal Astro blog that powers my personal site and GitHub Pages deployment. It focuses on clean
-typography, a curated homepage, and a small set of well-structured content collections.
+Patent analysis notes from a Chemistry PhD who codes. This Astro project houses writing samples,
+automation experiments, and a portfolio for my patent agent job search.
 
 ## Tech Stack
 
@@ -30,13 +30,15 @@ pushing changes.
 
 ## Content
 
-Blog posts live in `src/content/blog`. Each entry uses the schema defined in
+Blog posts live in `src/content/blog`. Each entry follows the schema defined in
 `src/content.config.ts`. Frontmatter fields (`title`, `description`, `pubDate`, `heroImage`) are
-validated at build time, so missing or malformed data fails fast.
+validated at build time, which keeps analyses consistent and auditable.
 
 ## Deployment (GitHub Pages)
 
 This repo is ready for project-level GitHub Pages hosting (`https://zelonepair.github.io/personal_portfolio`).
+The canonical domain for outreach is `https://jendau.com`, so update `astro.config.mjs` once that
+custom domain is wired to GitHub Pages.
 
 1. Push or merge into `main`.
 2. The workflow in `.github/workflows/deploy.yml` installs dependencies, runs `npm run build`, and
@@ -47,7 +49,7 @@ Make sure GitHub Pages is set to the **GitHub Actions** source in the repository
 
 ## Environment Notes
 
-- Update `astro.config.mjs` if you ever change the repository name or custom domain.
+- Update `astro.config.mjs` if you change the repository name or once `jendau.com` points here.
 - Global metadata lives in `src/consts.ts` (title, description, author, canonical URL, etc.).
 - Icons and assets are stored in `src/assets` or `public/` depending on whether you want Astro to
   optimize them.

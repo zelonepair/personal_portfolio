@@ -1,21 +1,23 @@
 ---
-title: 'A Personal Shipping Checklist'
-description: 'The steps I run through before publishing any small project or update.'
+title: 'Patent Analysis Shipping Checklist'
+description: 'The steps I run before sharing competitive intelligence or prior-art research.'
 pubDate: 'Jan 27 2025'
 heroImage: '../../assets/blog-placeholder-3.jpg'
 ---
 
-Every time I publish a project I promise myself I will remember the steps for the next release. I
-rarely do, so this checklist now lives here:
+Before I send an analysis memo to counsel or publish it here, I run through the same checklist. It
+keeps me honest and prevents surprises during interviews.
 
-1. Run `npm run build` locally and skim the output. Linting isn't set up yet, but a clean build
-   catches most typos and missing imports.
-2. Click through the generated `dist` folder using `npm run preview`. I look for layout bugs, broken
-   links, and focus states that vanish on darker backgrounds.
-3. Update the README with any new workflows or environment assumptions. Future contributors (even if
-   it's just me) should know how to run the project without guesswork.
-4. Tag the release and write a short changelog entry. It feels ceremonial and makes tracking
-   regressions easier.
+1. **Scope lock.** Confirm the question I'm answering (invalidity search, competitive landscaping,
+   whitespace study) and restate it at the top of the document.
+2. **Dataset hygiene.** Snapshot the data sources, API versions, and filters used to build the corpus.
+   If I relied on AI summaries, I paste the prompt + parameters so the work can be reproduced.
+3. **Claim mapping.** Highlight which claim elements each reference covers. I often include a table so
+   legal teams can port it into their own templates.
+4. **Risk notes.** Flag assumptions, chemistry-specific caveats, and manufacturing realities I learned
+   from industry.
+5. **Automation hooks.** Whenever a manual step takes longer than ~10 minutes, I log it as a scripting
+   opportunity. Those notes feed future posts.
 
-Feel free to borrow and remix the list. Shipping is a muscle—repetition and reflection make it less
-stressful every time.
+The list evolves, but the principle stands: every deliverable should be verifiable, auditable, and
+useful to both scientists and attorneys.
