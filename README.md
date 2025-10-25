@@ -37,8 +37,8 @@ validated at build time, which keeps analyses consistent and auditable.
 ## Deployment (GitHub Pages)
 
 This repo is ready for project-level GitHub Pages hosting (`https://zelonepair.github.io/personal_portfolio`).
-The canonical domain for outreach is `https://jendau.com`, so update `astro.config.mjs` once that
-custom domain is wired to GitHub Pages.
+The site is configured to serve from the custom domain `https://jendau.com` (see `public/CNAME` and
+`astro.config.mjs`). In GitHub, set the Pages custom domain to `jendau.com` so the DNS + SSL line up.
 
 1. Push or merge into `main`.
 2. The workflow in `.github/workflows/deploy.yml` installs dependencies, runs `npm run build`, and
@@ -49,7 +49,7 @@ Make sure GitHub Pages is set to the **GitHub Actions** source in the repository
 
 ## Environment Notes
 
-- Update `astro.config.mjs` if you change the repository name or once `jendau.com` points here.
+- Update `astro.config.mjs` if you ever change the domain again.
 - Global metadata lives in `src/consts.ts` (title, description, author, canonical URL, etc.).
 - Icons and assets are stored in `src/assets` or `public/` depending on whether you want Astro to
   optimize them.
