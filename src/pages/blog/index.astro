@@ -1,0 +1,116 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import Header from '../../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+const base = import.meta.env.BASE_URL || '/';
+const prefix = base === '/' ? '' : base.replace(/\/$/, '');
+const withBase = (path = '/') => {
+	if (path === '/' || path === '') {
+		return prefix ? `${prefix}/` : '/';
+	}
+	return `${prefix}${path.startsWith('/') ? path : `/${path}`}`;
+};
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`${SITE_TITLE} | Blog`} description={SITE_DESCRIPTION} />
+		<style>
+			main {
+				max-width: 1100px;
+				margin: 0 auto;
+				padding: 3rem 1rem 4rem;
+			}
+			.hero {
+				margin-bottom: 3rem;
+			}
+			.hero h1 {
+				margin-bottom: 1rem;
+			}
+			.posts {
+				display: grid;
+				gap: 2rem;
+				grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+			}
+			.article-card {
+				background: #fff;
+				border: 1px solid rgba(var(--gray-light), 0.8);
+				border-radius: 18px;
+				overflow: hidden;
+				box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+				display: flex;
+				flex-direction: column;
+			}
+			.article-card a {
+				color: inherit;
+				text-decoration: none;
+				display: flex;
+				flex-direction: column;
+				height: 100%;
+			}
+			.article-card img {
+				border-radius: 0;
+			}
+			.article-card .content {
+				padding: 1.25rem 1.25rem 1.5rem;
+				flex: 1;
+			}
+			.article-card .meta {
+				font-size: 0.85rem;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				color: rgb(var(--gray));
+				margin-bottom: 0.75rem;
+			}
+			.article-card h3 {
+				margin-bottom: 0.5rem;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="hero">
+				<p class="meta">Writing log</p>
+				<h1>Thinking out loud about shipping software on the web.</h1>
+				<p>
+					Deep dives, weeknotes, and reminders for future-me. Expect plenty of Astro tips, front-end
+					patterns, and the occasional career reflection.
+				</p>
+			</section>
+			<section class="posts">
+				{posts.map((post) => (
+					<article class="article-card">
+						<a href={withBase(`/blog/${post.id}/`)}>
+							{post.data.heroImage && (
+								<Image
+									width={720}
+									height={360}
+									src={post.data.heroImage}
+									alt=""
+								/>
+							)}
+							<div class="content">
+								<p class="meta">
+									<FormattedDate date={post.data.pubDate} />
+								</p>
+								<h3>{post.data.title}</h3>
+								<p>{post.data.description}</p>
+							</div>
+						</a>
+					</article>
+				))}
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>

@@ -1,0 +1,79 @@
+---
+import { SITE_AUTHOR, SITE_DESCRIPTION } from '../consts';
+
+const today = new Date();
+const rawBase = import.meta.env.BASE_URL || '/';
+const prefix = rawBase === '/' ? '' : rawBase.replace(/\/$/, '');
+const withBase = (path = '/') => {
+	if (path === '/' || path === '') {
+		return prefix ? `${prefix}/` : '/';
+	}
+	return `${prefix}${path.startsWith('/') ? path : `/${path}`}`;
+};
+const navLinks = [
+	{ label: 'Home', href: withBase('/') },
+	{ label: 'Blog', href: withBase('/blog') },
+	{ label: 'About', href: withBase('/about') },
+	{ label: 'RSS', href: withBase('/rss.xml') },
+];
+const socialLinks = [
+	{ label: 'GitHub', href: 'https://github.com/zelonepair' },
+	{ label: 'LinkedIn', href: 'https://www.linkedin.com/in/huongdau/' },
+	{ label: 'Email', href: 'mailto:hello@huongdau.dev' },
+];
+---
+
+<footer>
+	<div class="stack">
+		<p class="eyebrow">{SITE_DESCRIPTION}</p>
+		<p class="copyright">&copy; {today.getFullYear()} {SITE_AUTHOR}. All rights reserved.</p>
+	</div>
+	<nav>
+		{navLinks.map((link) => (
+			<a href={link.href}>{link.label}</a>
+		))}
+	</nav>
+	<div class="social-links">
+		{socialLinks.map((link) => (
+			<a href={link.href} target="_blank" rel="noreferrer">{link.label}</a>
+		))}
+	</div>
+</footer>
+<style>
+	footer {
+		padding: 3em 1em 4em;
+		background: #07080c;
+		color: #f5f5f5;
+		text-align: center;
+		margin-top: 4rem;
+	}
+	.stack {
+		max-width: 600px;
+		margin: 0 auto 1.5rem;
+	}
+	.eyebrow {
+		text-transform: uppercase;
+		font-size: 0.75rem;
+		letter-spacing: 0.15em;
+		color: rgba(255, 255, 255, 0.6);
+	}
+	.copyright,
+	footer p {
+		margin: 0.25rem 0;
+	}
+	nav,
+	.social-links {
+		display: flex;
+		justify-content: center;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+	footer a {
+		color: #f5f5f5;
+		text-decoration: none;
+		font-weight: 500;
+	}
+	footer a:hover {
+		text-decoration: underline;
+	}
+</style>

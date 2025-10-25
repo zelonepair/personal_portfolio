@@ -1,0 +1,189 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+const featuredPosts = posts.slice(0, 3);
+const base = import.meta.env.BASE_URL || '/';
+const prefix = base === '/' ? '' : base.replace(/\/$/, '');
+const withBase = (path = '/') => {
+	if (path === '/' || path === '') {
+		return prefix ? `${prefix}/` : '/';
+	}
+	return `${prefix}${path.startsWith('/') ? path : `/${path}`}`;
+};
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			.hero {
+				padding: 4rem 1rem 2rem;
+				max-width: 960px;
+				margin: 0 auto;
+			}
+			.hero h1 {
+				font-size: clamp(2.5rem, 4vw, 3.5rem);
+				margin-bottom: 1rem;
+			}
+			.hero p {
+				max-width: 55ch;
+			}
+			.hero .cta-group {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 1rem;
+				margin-top: 2rem;
+			}
+			.hero .cta-group a {
+				padding: 0.85rem 1.5rem;
+				border-radius: 999px;
+				font-size: 1rem;
+				text-decoration: none;
+				font-weight: 600;
+			}
+			.hero .cta-primary {
+				background: var(--accent);
+				color: #fff;
+				box-shadow: var(--box-shadow);
+			}
+			.hero .cta-secondary {
+				border: 1px solid rgba(var(--gray), 0.4);
+				color: rgb(var(--black));
+				background: #fff;
+			}
+			.sections {
+				max-width: 1100px;
+				margin: 0 auto;
+				padding: 0 1rem 4rem;
+				display: grid;
+				grid-template-columns: 2fr 1fr;
+				gap: 2rem;
+			}
+			.card-list {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				display: flex;
+				flex-direction: column;
+				gap: 1.5rem;
+			}
+			.card {
+				background: #fff;
+				padding: 1.5rem;
+				border-radius: 16px;
+				border: 1px solid rgba(var(--gray-light), 0.8);
+				box-shadow: 0 15px 45px rgba(15, 18, 25, 0.06);
+			}
+			.card a {
+				text-decoration: none;
+				color: inherit;
+				display: block;
+			}
+			.card h3 {
+				margin-bottom: 0.35rem;
+			}
+			.card p {
+				margin-bottom: 0;
+			}
+			.meta {
+				font-size: 0.9rem;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				color: rgb(var(--gray));
+			}
+			.sidebar {
+				display: flex;
+				flex-direction: column;
+				gap: 1.5rem;
+			}
+			.sidebar section {
+				background: #0f1118;
+				color: #f5f5f5;
+				padding: 1.5rem;
+				border-radius: 16px;
+				box-shadow: 0 20px 35px rgba(0, 0, 0, 0.3);
+			}
+			.sidebar ul {
+				padding-left: 1.5rem;
+			}
+			.sidebar li {
+				margin-bottom: 0.6rem;
+			}
+			.sidebar a {
+				color: #fff;
+				text-decoration: underline;
+			}
+			@media (max-width: 960px) {
+				.sections {
+					grid-template-columns: 1fr;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<section class="hero">
+			<p class="meta">Personal blog</p>
+			<h1>
+				Tracking the experiments, small wins, and lessons learned while building for the web.
+			</h1>
+			<p>
+				I'm Huong, a front-end engineer who enjoys devising thoughtful UX, tinkering with new tools,
+				and documenting the messy path to shipping polished experiences. This space captures deep dives,
+				notes-to-self, and the occasional behind-the-scenes debug story.
+			</p>
+			<div class="cta-group">
+				<a class="cta-primary" href={withBase('/blog')}>Read the blog</a>
+				<a class="cta-secondary" href="mailto:hello@huongdau.dev">Say hello</a>
+			</div>
+		</section>
+		<section class="sections">
+			<div>
+				<h2>Fresh posts</h2>
+				<ul class="card-list">
+					{featuredPosts.map((post) => (
+						<li class="card">
+							<a href={withBase(`/blog/${post.id}/`)}>
+								<p class="meta">
+									<FormattedDate date={post.data.pubDate} />
+								</p>
+								<h3>{post.data.title}</h3>
+								<p>{post.data.description}</p>
+							</a>
+						</li>
+					))}
+				</ul>
+			</div>
+			<div class="sidebar">
+				<section>
+					<h3>Now</h3>
+					<ul>
+						<li>Mapping out a content strategy for this site.</li>
+						<li>Building a tiny design system in Astro.</li>
+						<li>Learning how to automate releases with GitHub Actions.</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Elsewhere</h3>
+					<ul>
+						<li><a href="https://github.com/zelonepair" target="_blank">github.com/zelonepair</a></li>
+						<li>
+							<a href="https://www.linkedin.com/in/huongdau/" target="_blank">LinkedIn</a>
+						</li>
+						<li><a href="mailto:hello@huongdau.dev">hello@huongdau.dev</a></li>
+					</ul>
+				</section>
+			</div>
+		</section>
+		<Footer />
+	</body>
+</html>
